@@ -2,6 +2,7 @@ import { useRef, useState, useEffect } from "react";
 import Navigation from "./components/Navigation";
 import RightSection from "./components/RightSection";
 import "./index.css";
+import CursorGlow from "./components/CursorGlow";
 
 const sections = [
   { id: "home", label: "Overview" },
@@ -11,6 +12,8 @@ const sections = [
   { id: "skills", label: "Skills" },
   { id: "contact", label: "Contact" },
 ];
+
+console.log(import.meta.env);
 
 function App() {
   const [active, setActive] = useState("home");
@@ -51,6 +54,7 @@ function App() {
 
   return (
     <div className="min-h-screen bg-bg text-text font-sans">
+      <CursorGlow/>
       
       {/* Container */}
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-10 sm:py-14 lg:py-16">

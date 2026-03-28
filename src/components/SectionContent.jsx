@@ -15,7 +15,10 @@ const SectionContent = ({ type }) => {
 
           <div className="flex flex-wrap gap-3">
             {["React", "TypeScript", "System Design"].map((tag) => (
-              <span className="px-3 py-1 bg-card border border-border rounded-full text-sm text-text-muted">
+              <span
+                className="px-3 py-1 bg-card border border-border rounded-full text-sm text-text-muted"
+                key={tag}
+              >
                 {tag}
               </span>
             ))}
@@ -89,8 +92,8 @@ const SectionContent = ({ type }) => {
                 title: "O2E Booking Platforms",
                 desc: "Scalable SPA booking systems built with React, TypeScript, and decoupled CMS architecture.",
               },
-            ].map((project) => (
-              <div className="glass p-6 rounded-xl overflow-hidden">
+            ].map((project, idx) => (
+              <div className="glass p-6 rounded-xl overflow-hidden" key={idx}>
                 <h3 className="text-lg font-semibold text-text transition group-hover:text-primary">
                   {project.title}
                 </h3>
@@ -122,7 +125,10 @@ const SectionContent = ({ type }) => {
               "WebSockets",
               "System Design",
             ].map((skill) => (
-              <div className="glass inline-flex items-center rounded-full px-4 py-2 text-sm">
+              <div
+                className="glass inline-flex items-center rounded-full px-4 py-2 text-sm"
+                key={skill}
+              >
                 {skill}
               </div>
             ))}

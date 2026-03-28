@@ -8,3 +8,31 @@ body {
 h1 {
   color: rgb(94, 234, 212/0.5);
 }
+
+/* 🌌 Premium ambient cursor glow */
+.cursor-glow {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 50;
+
+  background: radial-gradient(
+    600px circle at var(--x, 50%) var(--y, 50%),
+    rgba(0, 140, 255, 0.1),
+    transparent 60%
+  );
+
+  animation: ambientShift 2s ease-in-out infinite alternate;
+}
+
+@keyframes ambientShift {
+  0% {
+    filter: hue-rotate(0deg) brightness(1);
+  }
+  50% {
+    filter: hue-rotate(8deg) brightness(1.05);
+  }
+  100% {
+    filter: hue-rotate(-6deg) brightness(0.98);
+  }
+}
