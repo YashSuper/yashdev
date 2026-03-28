@@ -1,0 +1,10 @@
+body {
+  background-color: rgb(15 23 42);
+  color: #fff;
+  font-family: var(--font-sans);
+  background-color: var(--color-bg);
+  color: var(--color-text);
+}
+h1 {
+  color: rgb(94, 234, 212/0.5);
+}

@@ -1,0 +1,65 @@
+@import "tailwindcss";
+
+@theme {
+  /* Reset default palette */
+  --color-*: initial;
+
+  /* 🌑 Base */
+  --color-bg: #0f172a;
+  --color-surface: #111827;
+  --color-card: #1f2937;
+  --color-white: #fff;
+
+  /* ❄️ Primary (Icy Blue) */
+  --color-primary: #c7d2fe; /* soft icy blue */
+  --color-primary-soft: rgba(199, 210, 254, 0.5);
+  --color-primary-hover: #a5b4fc;
+
+  /* ⚪ Text */
+  --color-text: #e5e7eb;
+  --color-text-muted: #9ca3af;
+  --color-text-subtle: #6b7280;
+
+  /* 🧱 Borders */
+  --color-border: #374151;
+
+  --font-sans: "Inter", sans-serif;
+}
+
+@layer components {
+  .glass {
+    @apply relative border border-primary/20 
+           backdrop-blur-xl bg-white/5
+           transition-all duration-300;
+  }
+
+  /* ✨ Frosted gradient */
+  .glass::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    background: linear-gradient(
+      135deg,
+      rgba(255, 255, 255, 0.08),
+      rgba(255, 255, 255, 0.03) 40%,
+      transparent 70%
+    );
+    pointer-events: none;
+  }
+
+  /* 🌫 Subtle inner light */
+  .glass::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    box-shadow: inset 0 1px 0 rgba(255,255,255,0.05);
+    pointer-events: none;
+  }
+
+  /* Minimal interaction */
+  .glass:hover {
+    @apply border-primary/40;
+  }
+}
