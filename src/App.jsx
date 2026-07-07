@@ -3,6 +3,7 @@ import { useTheme } from "./hooks/useTheme";
 import { useDeviceProfile } from "./hooks/useDeviceProfile";
 import Navbar from "./components/layout/Navbar";
 import Footer from "./components/layout/Footer";
+import ResumeFab from "./components/layout/ResumeFab";
 import DeferredSection from "./components/layout/DeferredSection";
 import Hero from "./components/sections/Hero";
 import Metrics from "./components/sections/Metrics";
@@ -97,6 +98,8 @@ export default function App() {
       </main>
 
       <Footer />
+
+      <ResumeFab />
     </>
   );
 }

@@ -7,7 +7,8 @@ export const profile = {
   location: "Jaipur, India · Working globally (remote)",
   email: "yashbharadwajsuper@gmail.com",
   availability: "Open to senior frontend & tech lead roles",
-  resumeUrl: "#",
+  // Served from public/ — drop your PDF at public/resume-yash-bharadwaj.pdf
+  resumeUrl: `${import.meta.env.BASE_URL}resume-yash-bharadwaj.pdf`,
   photo: null, // drop a professional photo at src/assets/portrait.jpg and import it in Hero
   social: [
     { label: "GitHub", href: "https://github.com/YashSuper", icon: "github" },

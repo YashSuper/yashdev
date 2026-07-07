@@ -1,6 +1,6 @@
 import { lazy, Suspense, useEffect, useState } from "react";
 import { motion as Motion, useReducedMotion } from "framer-motion";
-import { ArrowDown, ArrowRight, MapPin } from "lucide-react";
+import { ArrowDown, ArrowRight, FileDown, MapPin } from "lucide-react";
 import { profile } from "../../data/portfolio";
 import { useDeviceProfile } from "../../hooks/useDeviceProfile";
 import Button from "../ui/Button";
@@ -110,6 +110,18 @@ export default function Hero({ theme }) {
                 Get in touch
               </Button>
             </Magnetic>
+            <Magnetic className="lg:hidden">
+              <Button
+                as="a"
+                href={profile.resumeUrl}
+                download="Yash-Bharadwaj-Resume.pdf"
+                variant="ghost"
+                size="lg"
+              >
+                <FileDown size={17} aria-hidden />
+                Résumé
+              </Button>
+            </Magnetic>
           </Motion.div>
 
           <Motion.div variants={item} className="mt-9">
@@ -139,7 +151,13 @@ export default function Hero({ theme }) {
                 className="relative h-88 w-72 rounded-3xl border border-line object-cover shadow-card"
               />
             ) : (
-              <div className="relative flex h-88 w-72 flex-col justify-between overflow-hidden rounded-3xl border border-line bg-surface p-6 shadow-card">
+              /* Monogram card doubles as the résumé download */
+              <a
+                href={profile.resumeUrl}
+                download="Yash-Bharadwaj-Resume.pdf"
+                aria-label="Download résumé (PDF)"
+                className="group relative flex h-88 w-72 flex-col justify-between overflow-hidden rounded-3xl border border-line bg-surface p-6 shadow-card transition-all duration-300 hover:-translate-y-1 hover:border-accent/40 hover:shadow-card-hover"
+              >
                 <div className="font-mono text-xs text-subtle">
                   ~/{profile.name.toLowerCase().replace(" ", "-")}
                 </div>
@@ -152,6 +170,10 @@ export default function Hero({ theme }) {
                 <div>
                   <p className="text-sm font-semibold text-foreground">{profile.name}</p>
                   <p className="mt-0.5 text-xs text-muted">{profile.role}</p>
+                  <span className="mt-4 inline-flex items-center gap-1.5 rounded-full border border-line bg-background px-3 py-1.5 font-mono text-[11px] text-muted transition-colors duration-300 group-hover:border-accent/40 group-hover:text-accent">
+                    <FileDown size={13} aria-hidden />
+                    resume.pdf
+                  </span>
                 </div>
                 <div
                   aria-hidden
@@ -161,7 +183,7 @@ export default function Hero({ theme }) {
                       "radial-gradient(ellipse at 100% 0%, var(--glow), transparent 55%)",
                   }}
                 />
-              </div>
+              </a>
             )}
           </div>
         </Motion.div>

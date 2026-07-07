@@ -87,6 +87,7 @@ export default function Contact() {
 
           <a
             href={profile.resumeUrl}
+            download="Yash-Bharadwaj-Resume.pdf"
             className="mt-10 inline-flex items-center gap-1.5 text-sm font-medium text-muted transition-colors hover:text-foreground"
           >
             Download résumé
