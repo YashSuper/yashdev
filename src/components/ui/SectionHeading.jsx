@@ -10,7 +10,7 @@ export default function SectionHeading({ eyebrow, title, description, id }) {
       )}
       <h2
         id={id}
-        className="text-3xl font-semibold tracking-tight text-foreground sm:text-4xl text-balance"
+        className="text-[clamp(1.75rem,1.2rem+2.4vw,2.25rem)] font-semibold leading-[1.15] tracking-tight text-foreground text-balance"
       >
         {title}
       </h2>

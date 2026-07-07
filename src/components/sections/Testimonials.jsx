@@ -15,6 +15,7 @@ export default function Testimonials() {
           id="testimonials-heading"
           eyebrow="Testimonials"
           title="What teams say about working with me"
+          description="From LinkedIn recommendations — managers and engineers I've shipped with."
         />
 
         <div className="mt-14 grid gap-5 md:grid-cols-3">
@@ -30,7 +31,18 @@ export default function Testimonials() {
                 “{t.quote}”
               </blockquote>
               <figcaption className="mt-6 border-t border-line pt-4">
-                <p className="text-sm font-semibold text-foreground">{t.name}</p>
+                {t.href ? (
+                  <a
+                    href={t.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-sm font-semibold text-foreground transition-colors hover:text-accent"
+                  >
+                    {t.name}
+                  </a>
+                ) : (
+                  <p className="text-sm font-semibold text-foreground">{t.name}</p>
+                )}
                 <p className="mt-0.5 text-xs text-muted">{t.role}</p>
               </figcaption>
             </Reveal>

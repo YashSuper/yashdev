@@ -1,5 +1,6 @@
 import { metrics } from "../../data/portfolio";
 import Reveal from "../ui/Reveal";
+import CountUp from "../ui/CountUp";
 
 export default function Metrics() {
   return (
@@ -17,7 +18,7 @@ export default function Metrics() {
                 {m.label}
               </dt>
               <dd className="order-1 text-3xl font-semibold tracking-tight text-foreground sm:text-4xl">
-                {m.value}
+                <CountUp value={m.value} />
               </dd>
               <dd className="order-3 mt-1 text-xs text-subtle">{m.detail}</dd>
             </Reveal>

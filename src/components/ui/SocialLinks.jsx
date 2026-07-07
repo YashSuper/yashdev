@@ -1,12 +1,11 @@
 import { Mail } from "lucide-react";
-import { GitHubIcon, LinkedInIcon, XIcon } from "./BrandIcons";
+import { GitHubIcon, LinkedInIcon } from "./BrandIcons";
 import { profile } from "../../data/portfolio";
 import { cn } from "../../lib/utils";
 
 const icons = {
   github: GitHubIcon,
   linkedin: LinkedInIcon,
-  twitter: XIcon,
   mail: Mail,
 };
 

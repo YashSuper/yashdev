@@ -2,11 +2,15 @@ import { useEffect, useState } from "react";
 import { motion as Motion, useScroll, useSpring } from "framer-motion";
 import { Menu, X } from "lucide-react";
 import { navSections, profile } from "../../data/portfolio";
+import { useActiveSection } from "../../hooks/useActiveSection";
 import ThemeToggle from "../ui/ThemeToggle";
 import Button from "../ui/Button";
 import { cn } from "../../lib/utils";
 
-export default function Navbar({ active, theme, onToggleTheme }) {
+const SECTION_IDS = navSections.map((s) => s.id);
+
+export default function Navbar({ theme, onToggleTheme }) {
+  const active = useActiveSection(SECTION_IDS);
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
   const { scrollYProgress } = useScroll();

@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { cn } from "../../lib/utils";
 
 const variants = {
@@ -22,20 +23,46 @@ export default function Button({
   size = "md",
   className,
   children,
+  onPointerDown,
   ...props
 }) {
+  const [ripples, setRipples] = useState([]);
+
+  const addRipple = (e) => {
+    const rect = e.currentTarget.getBoundingClientRect();
+    const size = Math.max(rect.width, rect.height) * 2;
+    const id = Date.now() + Math.random();
+    setRipples((r) => [
+      ...r,
+      { id, size, x: e.clientX - rect.left - size / 2, y: e.clientY - rect.top - size / 2 },
+    ]);
+    setTimeout(() => {
+      setRipples((r) => r.filter((ripple) => ripple.id !== id));
+    }, 650);
+    onPointerDown?.(e);
+  };
+
   return (
     <Comp
       className={cn(
-        "inline-flex items-center justify-center gap-2 rounded-full font-medium",
-        "transition-all duration-200 active:scale-[0.98] select-none cursor-pointer",
+        "relative inline-flex items-center justify-center gap-2 overflow-hidden rounded-full font-medium",
+        "transition-all duration-200 active:scale-[0.97] select-none cursor-pointer",
         variants[variant],
         sizes[size],
         className
       )}
+      onPointerDown={addRipple}
       {...props}
     >
       {children}
+      {ripples.map((r) => (
+        <span
+          key={r.id}
+          aria-hidden
+          className="ripple pointer-events-none absolute rounded-full bg-current"
+          style={{ width: r.size, height: r.size, left: r.x, top: r.y }}
+        />
+      ))}
     </Comp>
   );
 }

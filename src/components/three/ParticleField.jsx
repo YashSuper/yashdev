@@ -4,11 +4,12 @@ import * as THREE from "three";
 /**
  * Subtle drifting particle field rendered with Three.js.
  * - Lazy-loaded (this module is behind React.lazy)
+ * - Particle density scales with the device tier (count prop)
  * - DPR capped at 1.75 to keep GPU cost low
- * - Pauses when the tab is hidden
- * - Skipped entirely under prefers-reduced-motion (handled by parent)
+ * - Pauses when the tab is hidden OR the hero is scrolled off-screen
+ * - Skipped entirely under prefers-reduced-motion / low-power (parent)
  */
-export default function ParticleField({ theme }) {
+export default function ParticleField({ theme, count = 900 }) {
   const mountRef = useRef(null);
   const themeRef = useRef(theme);
 
@@ -38,7 +39,7 @@ export default function ParticleField({ theme }) {
     renderer.setSize(mount.clientWidth, mount.clientHeight);
     mount.appendChild(renderer.domElement);
 
-    const COUNT = 900;
+    const COUNT = count;
     const positions = new Float32Array(COUNT * 3);
     const speeds = new Float32Array(COUNT);
     for (let i = 0; i < COUNT; i++) {
@@ -79,11 +80,12 @@ export default function ParticleField({ theme }) {
 
     let raf = 0;
     let hidden = document.hidden;
+    let onScreen = true;
     const clock = new THREE.Clock();
 
     const tick = () => {
       raf = requestAnimationFrame(tick);
-      if (hidden) return;
+      if (hidden || !onScreen) return;
 
       material.color.set(themeRef.current === "dark" ? 0x818cf8 : 0x4f46e5);
 
@@ -107,8 +109,15 @@ export default function ParticleField({ theme }) {
     };
     document.addEventListener("visibilitychange", onVisibility);
 
+    // Stop rendering entirely once the hero scrolls out of view.
+    const io = new IntersectionObserver(([entry]) => {
+      onScreen = entry.isIntersecting;
+    });
+    io.observe(mount);
+
     return () => {
       cancelAnimationFrame(raf);
+      io.disconnect();
       document.removeEventListener("visibilitychange", onVisibility);
       window.removeEventListener("resize", onResize);
       window.removeEventListener("pointermove", onPointerMove);
@@ -117,7 +126,7 @@ export default function ParticleField({ theme }) {
       renderer.dispose();
       mount.removeChild(renderer.domElement);
     };
-  }, []);
+  }, [count]);
 
   return <div ref={mountRef} aria-hidden className="absolute inset-0" />;
 }

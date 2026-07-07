@@ -2,7 +2,9 @@ import { lazy, Suspense, useEffect, useState } from "react";
 import { motion as Motion, useReducedMotion } from "framer-motion";
 import { ArrowDown, ArrowRight, MapPin } from "lucide-react";
 import { profile } from "../../data/portfolio";
+import { useDeviceProfile } from "../../hooks/useDeviceProfile";
 import Button from "../ui/Button";
+import Magnetic from "../ui/Magnetic";
 import SocialLinks from "../ui/SocialLinks";
 
 const ParticleField = lazy(() => import("../three/ParticleField"));
@@ -23,17 +25,19 @@ const item = {
 
 export default function Hero({ theme }) {
   const reduceMotion = useReducedMotion();
+  const { lowPower, tier } = useDeviceProfile();
   const [showThree, setShowThree] = useState(false);
 
   // Defer the Three.js bundle until the browser is idle so it never
-  // competes with first paint.
+  // competes with first paint. Skipped entirely on low-powered devices,
+  // where the CSS glow layers carry the look on their own.
   useEffect(() => {
-    if (reduceMotion) return;
+    if (reduceMotion || lowPower) return;
     const idle = window.requestIdleCallback ?? ((cb) => setTimeout(cb, 1200));
     const id = idle(() => setShowThree(true));
     return () =>
       (window.cancelIdleCallback ?? clearTimeout)(id);
-  }, [reduceMotion]);
+  }, [reduceMotion, lowPower]);
 
   return (
     <section
@@ -45,7 +49,7 @@ export default function Hero({ theme }) {
       <div aria-hidden className="absolute inset-0 grid-fade" />
       {showThree && (
         <Suspense fallback={null}>
-          <ParticleField theme={theme} />
+          <ParticleField theme={theme} count={tier === "high" ? 900 : 450} />
         </Suspense>
       )}
       <div
@@ -74,7 +78,7 @@ export default function Hero({ theme }) {
 
           <Motion.h1
             variants={item}
-            className="mt-8 text-4xl font-semibold leading-[1.06] tracking-tight sm:text-6xl lg:text-7xl text-balance"
+            className="mt-8 text-[clamp(2.375rem,1rem+6vw,4.5rem)] font-semibold leading-[1.06] tracking-tight text-balance"
           >
             <span className="text-gradient">{profile.headline}</span>
           </Motion.h1>
@@ -95,13 +99,17 @@ export default function Hero({ theme }) {
           </Motion.p>
 
           <Motion.div variants={item} className="mt-9 flex flex-wrap items-center gap-3">
-            <Button as="a" href="#work" variant="primary" size="lg">
-              View case studies
-              <ArrowRight size={17} aria-hidden />
-            </Button>
-            <Button as="a" href="#contact" variant="outline" size="lg">
-              Get in touch
-            </Button>
+            <Magnetic>
+              <Button as="a" href="#work" variant="primary" size="lg">
+                View case studies
+                <ArrowRight size={17} aria-hidden />
+              </Button>
+            </Magnetic>
+            <Magnetic>
+              <Button as="a" href="#contact" variant="outline" size="lg">
+                Get in touch
+              </Button>
+            </Magnetic>
           </Motion.div>
 
           <Motion.div variants={item} className="mt-9">

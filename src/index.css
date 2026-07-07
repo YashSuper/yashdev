@@ -93,6 +93,7 @@ body {
   font-feature-settings: "cv11", "ss01";
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizeLegibility;
+  overflow-x: clip;
 }
 
 ::selection {
@@ -160,4 +161,37 @@ body {
 
 .skip-link:focus-visible {
   top: 1rem;
+}
+
+/* ---------------------------------- */
+/* Performance tier: lite              */
+/* Strips GPU-expensive layers on low-powered devices while keeping   */
+/* the layout and color system identical.                             */
+/* ---------------------------------- */
+html.perf-lite :is(.backdrop-blur, .backdrop-blur-md, .backdrop-blur-xl) {
+  backdrop-filter: none;
+  background-color: var(--surface);
+}
+
+html.perf-lite :is(.shadow-card, .shadow-card-hover) {
+  box-shadow: none;
+}
+
+html.perf-lite :is(.blur-2xl, .blur-3xl) {
+  filter: none;
+  opacity: 0.25;
+}
+
+/* Touch/click ripple used by Button */
+.ripple {
+  transform: scale(0);
+  opacity: 0.28;
+  animation: ripple 0.65s ease-out forwards;
+}
+
+@keyframes ripple {
+  to {
+    transform: scale(1);
+    opacity: 0;
+  }
 }

@@ -10,13 +10,12 @@ export const profile = {
   resumeUrl: "#",
   photo: null, // drop a professional photo at src/assets/portrait.jpg and import it in Hero
   social: [
-    { label: "GitHub", href: "https://github.com/yashbharadwaj", icon: "github" },
+    { label: "GitHub", href: "https://github.com/YashSuper", icon: "github" },
     {
       label: "LinkedIn",
-      href: "https://www.linkedin.com/in/yashbharadwaj",
+      href: "https://www.linkedin.com/in/superyash/",
       icon: "linkedin",
     },
-    { label: "X / Twitter", href: "https://x.com/yashbharadwaj", icon: "twitter" },
     { label: "Email", href: "mailto:yashbharadwajsuper@gmail.com", icon: "mail" },
   ],
 };
@@ -282,23 +281,28 @@ export const openSource = [
   },
 ];
 
+// Real LinkedIn recommendations. Long quotes are trimmed with ellipses,
+// never reworded. Source: linkedin.com/in/<author> (linked per entry).
 export const testimonials = [
   {
     quote:
-      "Yash doesn't just build what's asked — he pushes back on the right things and the product ends up better for it. The briefing center hasn't missed a single demo.",
-    name: "Placeholder — Client Director",
-    role: "Enterprise Experience Program",
+      "He brings strong technical expertise, approaches problems logically, and is someone who takes ownership of his work end-to-end. Yash is proactive in tackling challenges, often contributes thoughtful ideas during difficult situations, and has played an important role in mentoring team members and helping the team meet its commitments.",
+    name: "Payal Gupta",
+    role: "Program Manager · managed Yash directly",
+    href: "https://www.linkedin.com/in/dr-payal/",
   },
   {
     quote:
-      "The clearest technical communicator on the team. He turned our slowest property into our fastest and taught the team how he did it.",
-    name: "Placeholder — Engineering Manager",
-    role: "Digital Platforms",
+      "Yash is an exceptionally talented React developer, proficient in JavaScript, with a strong background in design and UI/UX. […] He consistently impressed me with his ability to transform complex requirements into elegant and user-friendly interfaces. […] He is always willing to go the extra mile to ensure that frontend and backend components integrate seamlessly, resulting in cohesive and impactful solutions.",
+    name: "Hemant Vyas",
+    role: "Drupal Developer · worked with Yash on the same team",
+    href: "https://www.linkedin.com/in/hemant-vyas/",
   },
   {
     quote:
-      "As a junior I dreaded code review until Yash ran them. Six months of his mentorship changed the trajectory of my career.",
-    name: "Placeholder — Software Engineer",
-    role: "Mentee, Frontend Guild",
+      "He is a great frontend developer with phenomenal idea of different CSS and JS frameworks. He is very capable of understanding the frontend and the backend challenges. I strong recommend Yash.",
+    name: "Arjak Mondal",
+    role: "Software Engineer L3, Axelerant · worked with Yash on the same team",
+    href: "https://www.linkedin.com/in/arjak-mondal-71ab80161/",
   },
 ];
