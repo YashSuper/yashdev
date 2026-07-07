@@ -2,16 +2,82 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <link rel="stylesheet" href="style.css" />
+
+    <title>Yash Bharadwaj — Senior Frontend Engineer & Tech Lead</title>
+    <meta
+      name="description"
+      content="Senior Frontend Engineer and Tech Lead with 6+ years of experience in React, Next.js, TypeScript, and enterprise Drupal CMS platforms. I design frontend systems that stay fast at enterprise scale."
+    />
+    <meta name="author" content="Yash Bharadwaj" />
+    <meta
+      name="keywords"
+      content="Senior Frontend Engineer, Tech Lead, React, Next.js, TypeScript, Drupal, design systems, performance optimization"
+    />
+    <link rel="canonical" href="https://yashbharadwaj.dev/" />
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Yash Bharadwaj — Senior Frontend Engineer & Tech Lead" />
+    <meta
+      property="og:description"
+      content="I design frontend systems that stay fast at enterprise scale. React, Next.js, TypeScript, and decoupled Drupal."
+    />
+    <meta property="og:url" content="https://yashbharadwaj.dev/" />
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Yash Bharadwaj — Senior Frontend Engineer & Tech Lead" />
+    <meta
+      name="twitter:description"
+      content="I design frontend systems that stay fast at enterprise scale."
+    />
+
+    <!-- Set theme before first paint to avoid a flash of the wrong mode -->
+    <script>
+      (function () {
+        try {
+          var stored = localStorage.getItem("theme");
+          var dark =
+            stored === "dark" ||
+            (!stored &&
+              !window.matchMedia("(prefers-color-scheme: light)").matches);
+          if (dark) document.documentElement.classList.add("dark");
+        } catch (e) {}
+      })();
+    </script>
+
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
       rel="stylesheet"
     />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>yashdev</title>
+
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "Person",
+        "name": "Yash Bharadwaj",
+        "jobTitle": "Senior Frontend Engineer & Tech Lead",
+        "email": "mailto:yashbharadwajsuper@gmail.com",
+        "address": {
+          "@type": "PostalAddress",
+          "addressLocality": "Jaipur",
+          "addressCountry": "IN"
+        },
+        "knowsAbout": [
+          "React",
+          "Next.js",
+          "TypeScript",
+          "Drupal",
+          "Frontend Architecture",
+          "Design Systems",
+          "Performance Optimization"
+        ]
+      }
+    </script>
   </head>
   <body>
     <div id="root"></div>
