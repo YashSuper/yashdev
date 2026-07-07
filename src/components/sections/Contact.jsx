@@ -2,6 +2,7 @@ import { useState } from "react";
 import { ArrowRight, Check, Copy, Mail } from "lucide-react";
 import { profile } from "../../data/portfolio";
 import Button from "../ui/Button";
+import ContactForm from "../ui/ContactForm";
 import SocialLinks from "../ui/SocialLinks";
 import Reveal from "../ui/Reveal";
 
@@ -47,25 +48,29 @@ export default function Contact() {
             need an architecture partner, my inbox is open.
           </p>
 
-          <div className="mt-9 flex flex-wrap items-center justify-center gap-3">
-            <Button as="a" href={`mailto:${profile.email}`} variant="accent" size="lg">
-              <Mail size={17} aria-hidden />
+          <div className="mt-10">
+            <ContactForm />
+          </div>
+
+          <div className="mt-8 flex flex-wrap items-center justify-center gap-3">
+            <Button as="a" href={`mailto:${profile.email}`} variant="outline" size="md">
+              <Mail size={16} aria-hidden />
               {profile.email}
             </Button>
             <Button
-              variant="outline"
-              size="lg"
+              variant="ghost"
+              size="md"
               onClick={copyEmail}
               aria-live="polite"
             >
               {copied ? (
                 <>
-                  <Check size={17} className="text-success" aria-hidden />
+                  <Check size={16} className="text-success" aria-hidden />
                   Copied
                 </>
               ) : (
                 <>
-                  <Copy size={17} aria-hidden />
+                  <Copy size={16} aria-hidden />
                   Copy email
                 </>
               )}

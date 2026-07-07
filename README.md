@@ -37,6 +37,16 @@ src/
 - **Accessibility** — semantic landmarks, skip link, keyboard-friendly disclosure widgets, WCAG AA contrast in both themes.
 - **Theming** — semantic CSS variables mapped into Tailwind via `@theme inline`; dark mode is a `.dark` class set before first paint.
 
+## Contact form
+
+The contact form posts to [Web3Forms](https://web3forms.com). To activate it:
+
+1. Enter your email at web3forms.com — it sends you a free access key (no account needed).
+2. Copy `.env.example` to `.env` and paste the key into `VITE_WEB3FORMS_KEY`.
+3. Rebuild. Without a key, the form falls back to composing a `mailto:` draft.
+
+Submissions arrive in your inbox; a honeypot field filters basic spam bots.
+
 ## Customizing
 
 - Add your portrait at `src/assets/portrait.jpg` and wire it into `Hero.jsx`.
